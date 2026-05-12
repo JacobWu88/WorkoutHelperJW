@@ -30,7 +30,6 @@ def login():
         else:
             print("Your username or Password is incorrect!")
             return
-
 #intro
 print("Welcome!")
 print("This is te Workout Helper, for all your workout needs!")
