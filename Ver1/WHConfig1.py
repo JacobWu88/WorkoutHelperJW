@@ -1,9 +1,16 @@
 menu = ["Workout", "Summary", "Previous Workouts", "Milestones", "Profile", "Contact Us", "Log Out"]
-def print_menu():
-    line = "-" * len("|".join(menu))
+workout_menu = ["Walk", "Run", "Bike", "Basketball", "Skating", "Badminton"]
+
+
+def print_menu(menus):
+    line = "-" * len("|".join(menus))
     print(line)
-    print("|".join(menu))
+    print("|".join(menus))
     print(line)
 
+
+
+
+
 if __name__ == "__main__":
-    print_menu()
+    pass

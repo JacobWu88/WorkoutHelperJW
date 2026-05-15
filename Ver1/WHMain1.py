@@ -1,23 +1,24 @@
-import WHConfig1
-import WHLogReg1
-import WHLockHomeScreen1
+import WHConfig1 as cf
+import WHLogReg1 as lg
+import WHLockHomeScreen1 as lhs
+import WHWorkout1 as wk
 
 
 while True:
     # Lock Screen
-    WHLockHomeScreen1.lock_screen()
+    lhs.lock_screen()
     # Log in or Register
-    WHLogReg1.login_or_register()
+    lg.login_or_register()
     # Home Screen
-    WHLockHomeScreen1.home_screen()
+    lhs.home_screen()
     # Print the main menu
-    WHConfig1.print_menu()
+    cf.print_menu(cf.menu)
 
     while True:
-        menu_option = input("what do you want to do?").lower()
-
+        menu_option = input("what do you want to do? ").lower()
         if menu_option == "workout":
-            pass
+            cf.print_menu(cf.workout_menu)
+            wk.workout()
         elif menu_option == "summary":
             pass
         elif menu_option == "milestones":

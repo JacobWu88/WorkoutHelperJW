@@ -22,18 +22,18 @@ def login():
     password_input = input("Password: ")
     with open("users.txt", "r") as file:
         users = file.readlines()
-        match = False
-        # Defines each user into each row
+    
     for user in users:
         user_data = user.split()
         # Check if said username and password exists in the file
         if user_data[1] == username_input and user_data[2] == password_input:
             print("Login Successful!")
             print("Welcome, " + username_input + "!")
-            return True
-    if not match:
-        print("Your username or Password is incorrect!")
-    return False
+            user_id = user_data[0]
+            return True, user_id
+    
+    print("Your username or Password is incorrect!")
+    return False, None
 
 
 # Intro
