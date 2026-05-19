@@ -217,5 +217,7 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
-# user data
+# User data
 Ver1/users.txt
+# Workout history
+Ver1/workout_history.txt
