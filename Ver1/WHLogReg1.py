@@ -28,7 +28,8 @@ def login():
         # Check if said username and password exists in the file
         if user_data[1] == username_input and user_data[2] == password_input:
             print("Login Successful!")
-            print("Welcome, " + username_input + "!")
+            print(f"Welcome, {user_data[1]}!")
+            # Get and return the user_id
             user_id = user_data[0]
             return True, user_id
     
@@ -45,10 +46,11 @@ def login_or_register():
         if logreg == "register":
             register()
         elif logreg == "login":
-            logged = login()
+            logged, user_id = login()
+
         elif logreg == "exit":
             exit()
         # This won't be needed in gui
         else:
             print("Invalid Input!")
-    return logged
+    return logged, user_id

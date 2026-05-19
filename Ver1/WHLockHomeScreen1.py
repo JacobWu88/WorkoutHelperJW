@@ -6,6 +6,7 @@ def lock_screen():
     return
 
 def home_screen():
+    # Display the current date and time
     current_Date = time.strftime("%d/%m/%Y")
     current_Time = time.strftime("%H:%M:%S")
     print(f"Date: {current_Date}")
