@@ -49,8 +49,11 @@ def login_or_register():
             logged, user_id = login()
 
         elif logreg == "exit":
+            print("Exiting...")
             exit()
         # This won't be needed in gui
         else:
             print("Invalid Input!")
     return logged, user_id
+if __name__ == "__main__":
+    login_or_register()
