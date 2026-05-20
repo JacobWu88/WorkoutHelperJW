@@ -22,15 +22,25 @@ def workout(user_id):
         distance = 0
         choice = "go"
         while choice != "stop":
-            choice = input("Enter 'L' to lap or Press Enter to stop the workout").lower()
+            choice = input("Enter 'L' to lap or Press Enter to stop the workout. ").lower()
             if choice == "l":
                 lap_time = round(time.time() - start_time, 2)
                 print(f"Lap time: {lap_time} seconds")
-                with open("lap.txt", "a") as file:
-                    file.write(f"{workout_id} {workout_name} {lap_time}\n")
-            elif choice == "":
-                print("Stopping Workout.")
-                choice = "stop"
+                with open("lap.txt", "a") as f:
+                    print("Opened")
+                    f.write(f"\n{workout_id} {workout_name} {lap_time}")
+                    print("Writing")
+                    while choice != "stop":
+                        choice = input("Enter 'L' to lap or Press Enter to stop the workout. ").lower()
+                        if choice == "l":
+                            lap_time = round(time.time() - start_time, 2)
+                            f.write(f" {lap_time}")
+                            print("writing")
+                        elif choice == "":
+                            print("Stopping Workout.")
+                            choice = "stop"
+            else:
+                print("Invalid")
         #  End time is the time the user stopped the workout
         end_time = time.time()
         # Calculate the total time

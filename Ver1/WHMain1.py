@@ -26,6 +26,7 @@ while True:
         elif menu_option == "summary":
             pass
         elif menu_option == "previous workouts":
+            cf.print_menu(cf.previous_workouts_menu)
             pw.previous_workouts(user_id)
         # Milestones and awards
         elif menu_option == "milestones":
