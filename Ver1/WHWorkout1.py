@@ -26,6 +26,7 @@ def workout(user_id):
             if choice == "l":
                 lap_time = round(time.time() - start_time, 2)
                 print(f"Lap time: {lap_time} seconds")
+                distance = lap_time * 0.2
                 with open("lap.txt", "a") as f:
                     f.write(f"\n{workout_id} {workout_name} {distance}km {lap_time}")
                     while choice != "stop":

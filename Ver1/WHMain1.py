@@ -22,17 +22,9 @@ while True:
             cf.print_menu(cf.workout_menu)
             # Bring the user_id in so it can record the workout
             wk.workout(user_id)
-        # Summary of the workouts
-        elif menu_option == "summary":
-            pass
         elif menu_option == "previous workouts":
             pw.previous_workouts(user_id)
-        # Milestones and awards
-        elif menu_option == "milestones":
-            pass
-        # Profile and can edit information
-        elif menu_option == "profile":
-            pass
+        # Contact Us
         elif menu_option == "contact Us":
             pass
         elif menu_option == "logout" or menu_option == "log out":

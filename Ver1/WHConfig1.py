@@ -1,7 +1,7 @@
 import WHLogReg1 as lg
 
 # Menus
-menu = ["Workout", "Summary", "Previous Workouts", "Milestones", "Profile", "Contact Us", "Log Out"]
+menu = ["Workout", "Previous Workouts", "Contact Us", "Log Out"]
 workout_menu = ["Walk", "Run", "Bike", "Basketball", "Skating", "Badminton"]
 # Print Menus
 def print_menu(menus):
