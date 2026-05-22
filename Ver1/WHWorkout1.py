@@ -11,11 +11,11 @@ def workout(user_id):
             # If the file doesn't exist or empty, start at ID 1
             workout_id = 1
         print("3")
-        time.sleep(1)
+        time.sleep(0.5)
         print("2")
-        time.sleep(1)
+        time.sleep(0.5)
         print("1")
-        time.sleep(1)
+        time.sleep(0.5)
         print("GO!")
         # Start time is the current time
         start_time = time.time()
@@ -27,15 +27,13 @@ def workout(user_id):
                 lap_time = round(time.time() - start_time, 2)
                 print(f"Lap time: {lap_time} seconds")
                 with open("lap.txt", "a") as f:
-                    print("Opened")
-                    f.write(f"\n{workout_id} {workout_name} {lap_time}")
-                    print("Writing")
+                    f.write(f"\n{workout_id} {workout_name} {distance}km {lap_time}")
                     while choice != "stop":
                         choice = input("Enter 'L' to lap or Press Enter to stop the workout. ").lower()
                         if choice == "l":
                             lap_time = round(time.time() - start_time, 2)
+                            print(f"Lap time: {lap_time} seconds")
                             f.write(f" {lap_time}")
-                            print("writing")
                         elif choice == "":
                             print("Stopping Workout.")
                             choice = "stop"

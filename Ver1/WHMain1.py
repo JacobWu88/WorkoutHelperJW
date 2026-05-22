@@ -12,10 +12,10 @@ while True:
     logged, user_id = lg.login_or_register()
     # Home Screen
     lhs.home_screen()
-    # Print the main menu
-    cf.print_menu(cf.menu)
 
     while True:
+        # Print the main menu
+        cf.print_menu(cf.menu)
         menu_option = input("what do you want to do? ").lower()
         if menu_option == "workout":
             # Print the workout menu
@@ -26,7 +26,6 @@ while True:
         elif menu_option == "summary":
             pass
         elif menu_option == "previous workouts":
-            cf.print_menu(cf.previous_workouts_menu)
             pw.previous_workouts(user_id)
         # Milestones and awards
         elif menu_option == "milestones":
@@ -38,7 +37,7 @@ while True:
             pass
         elif menu_option == "logout" or menu_option == "log out":
             print("Logging out...")
-            break
+            exit()
         else:
             print("Invalid Input!")
 
