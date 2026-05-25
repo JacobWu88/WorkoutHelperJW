@@ -1,3 +1,8 @@
+"""
+This Section shows Previous Workouts in the format of Date | Workout | Time
+"""
+
+
 import WHConfig1 as cf
 
 def previous_workouts(user_id):
