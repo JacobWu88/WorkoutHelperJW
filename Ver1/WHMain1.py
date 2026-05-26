@@ -1,12 +1,12 @@
+"""
+This is the main script where the central logic happens.
+"""
+
 import WHConfig1 as cf
 import WHLogReg1 as lg
 import WHLockHomeScreen1 as lhs
 import WHWorkout1 as wk
 import WHPreviousWorkouts1 as pw
-
-"""
-This is the main script where the central logic happens.
-"""
 
 while True:
     # Lock Screen
