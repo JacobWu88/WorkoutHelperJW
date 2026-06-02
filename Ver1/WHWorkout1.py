@@ -71,11 +71,11 @@ def workout(user_id):
         end_time = time.time()
         # Calculate the total time
         total_time = round(end_time - start_time, 2)
-        print(f"Your workout took {total_time} seconds")
         special_value = round(convert(total_time), 2)
+        print(f"Your workout took {total_time} seconds, {special_value}{special}")
         # Write the workout to a file
         with open("workout_history.txt", "a") as file:
-            file.write(f"{user_id} {workout_id} {workout_name} {special_value}{special} {time.strftime("%d/%m/%Y")} {total_time}s\n")
+            file.write(f"{user_id} {workout_id} {workout_name} {special_value}{special} {time.strftime("%d/%m/%Y")} {total_time}    \n")
 
 
 if __name__ == "__main__":

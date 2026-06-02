@@ -7,6 +7,7 @@ import WHLogReg1 as lg
 import WHLockHomeScreen1 as lhs
 import WHWorkout1 as wk
 import WHPreviousWorkouts1 as pw
+import WHContactUs1 as cu
 
 while True:
     # Lock Screen
@@ -29,7 +30,7 @@ while True:
             pw.previous_workouts(user_id)
         # Contact Us
         elif menu_option == "contact Us":
-            pass
+            cu.contact_us()
         elif menu_option == "logout" or menu_option == "log out":
             print("Logging out...")
             exit()
