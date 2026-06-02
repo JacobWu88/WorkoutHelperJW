@@ -41,6 +41,7 @@ def workout(user_id):
         # Start time is the current time
         start_time = time.time()
         choice = "go"
+        lapped = False
         while choice != "stop":
             # Lap
             choice = input("Enter 'L' to lap or Press Enter to stop the workout. ").lower()
@@ -51,7 +52,8 @@ def workout(user_id):
                 special_value = round(convert(lap_time), 2)
                 with open("lap.txt", "a") as f:
                     # Write the workout ID, Name, value, unit, and laptime to the file
-                    f.write(f"\n{workout_id} {workout_name} {special_value}{special} {lap_time}s")
+                    f.write(f"\n{workout_id} {user_id} {workout_name} {special_value}{special} {lap_time}s")
+                    lapped = True
                     while choice != "stop":
                         choice = input("Enter 'L' to lap or Press Enter to stop the workout. ").lower()
                         if choice == "l":
@@ -76,7 +78,9 @@ def workout(user_id):
         # Write the workout to a file
         with open("workout_history.txt", "a") as file:
             file.write(f"{user_id} {workout_id} {workout_name} {special_value}{special} {time.strftime("%d/%m/%Y")} {total_time}    \n")
-
+        if not lapped:
+            with open("lap.txt", "a") as file:
+                file.write(f"\n{workout_id} {user_id} {workout_name} {special_value}{special} {total_time}s")
 
 if __name__ == "__main__":
     # This user_id is for testing

@@ -7,8 +7,9 @@ import WHConfig1 as cf
 def previous_workouts(user_id):
     # Find the longest workout option name
     max_length = len(max(cf.workout_menu, key=len))
+    max_time = len(max(cf.workout_menu, key=len))
     # Underline the Headings
-    print(f"\033[4m {'No.':^3} | {'Date':^10} | {'Workout':^{max_length}} | {'Time':^4} | {'m/kj':^4} \033[0m")
+    print(f"\033[4m {'No.':^3} | {'Date':^10} | {'Workout':^{max_length}} | {'Time':^6} | {'m/kj':^4} \033[0m")
     with open("workout_history.txt", "r") as file:
         for workout in file:
             workouts = workout.split()
@@ -19,15 +20,16 @@ def previous_workouts(user_id):
     select = input("Select a workout to view the lap times: ")
     with open("lap.txt", "r") as file:
         for lap in file:
+            # If workout selected is in the lap file and matches
             if lap.startswith(select):
-                lap_data = lap.split()[2:]
-                lap_it = iter(lap_data)
-                lap_pairs = list(zip(lap_it, lap_it))
-                print(f"\033[4m {"distance"} | {"time"} \033[0m")
-                for pair in lap_pairs:
-                    print(f" {pair[0]:^8} | {pair[1]}")
-            elif select not in lap[0]:
-                print("Workout does not have further laps.")
-                return
+                #if user_id == lap.split()[1]:
+                    # Skip the first 2 parts
+                    lap_data = lap.split()[3:]
+                    lap_it = iter(lap_data)
+                    lap_pairs = list(zip(lap_it, lap_it))
+                    print(f"\033[4m {'distance'} | {'time'} \033[0m")
+                    for pair in lap_pairs:
+                        print(f" {pair[0]:^8} | {pair[1]}")
+
 if __name__ == "__main__":
-    previous_workouts(6)
+    previous_workouts(9999)
