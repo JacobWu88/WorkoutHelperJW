@@ -50,9 +50,13 @@ def workout(user_id):
                 lap_time = round(time.time() - start_time, 2)
                 print(f"Lap time: {lap_time} seconds")
                 special_value = round(convert(lap_time), 2)
+                with open("lap.txt", "r") as f:
+                    lined = f.readlines()
                 with open("lap.txt", "a") as f:
                     # Write the workout ID, Name, value, unit, and laptime to the file
-                    f.write(f"\n{workout_id} {user_id} {workout_name} {special_value}{special} {lap_time}s")
+                    if len(lined) > 0:
+                        f.write("\n")
+                    f.write(f"{workout_id} {user_id} {workout_name} {special_value}{special} {lap_time}s")
                     lapped = True
                     while choice != "stop":
                         choice = input("Enter 'L' to lap or Press Enter to stop the workout. ").lower()
