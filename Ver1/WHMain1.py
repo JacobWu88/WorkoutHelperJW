@@ -29,7 +29,7 @@ while True:
         elif menu_option == "previous workouts":
             pw.previous_workouts(user_id)
         # Contact Us
-        elif menu_option == "contact Us":
+        elif menu_option == "contact us":
             cu.contact_us()
         elif menu_option == "logout" or menu_option == "log out":
             print("Logging out...")
