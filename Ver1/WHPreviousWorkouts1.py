@@ -41,6 +41,7 @@ def previous_workouts(user_id):
                     elif str(user_id) == lap.split()[1]:
                         # Skip the first 2 parts
                         lap_data = lap.split()[3:]
+                        # Zip the data together and pair them
                         lap_it = iter(lap_data)
                         lap_pairs = list(zip(lap_it, lap_it))
                         print(f"\033[4m {'distance'} | {'time'} \033[0m")
