@@ -20,8 +20,12 @@ def register():
 def login():
     username_input = input("Username: ")
     password_input = input("Password: ")
-    with open("users.txt", "r") as file:
-        users = file.readlines()
+    try:
+        with open("users.txt", "r") as file:
+            users = file.readlines()
+    except FileNotFoundError:
+        print("No users found!")
+        return False, None
     
     for user in users:
         user_data = user.split()

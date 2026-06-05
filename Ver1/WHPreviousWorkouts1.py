@@ -7,12 +7,16 @@ import WHConfig1 as cf
 def previous_workouts(user_id):
     # Find the longest workout option name
     max_length = len(max(cf.workout_menu, key=len))
-    with open("workout_history.txt", "r") as file:
-        if any(line.startswith(str(user_id)) for line in file):
-            print(f"\033[4m {'No.':^3} | {'Date':^10} | {'Workout':^{max_length}} | {'Time':^6} | {'m/kj':^4} \033[0m")
-        else:
-            print("You have no previous workouts!")
-            return
+    try:
+        with open("workout_history.txt", "r") as file:
+            if any(line.startswith(str(user_id)) for line in file):
+                print(f"\033[4m {'No.':^3} | {'Date':^10} | {'Workout':^{max_length}} | {'Time':^6} | {'m/kj':^4} \033[0m")
+            else:
+                print("You have no previous workouts!")
+                return
+    except FileNotFoundError:
+        print("You have no previous workouts!")
+        return
     # Underline the Headings
     with open("workout_history.txt", "r") as file:
         for workout in file:
