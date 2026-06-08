@@ -2,13 +2,15 @@
 This Section is where the miscellaneous things happen like defining the rate of speed, menus, and small functions.
 """
 # Menus
-menu = ["1. Workout", "2. Previous Workouts", "3. Contact Us", "4. Log Out"]
+menu = ["Workout", "Previous Workouts", "Contact Us", "Log Out"]
 workout_menu = ["WALK", "RUN", "BIKE", "BASKETBALL", "SKATING", "GYM", "BADMINTON"]
 # Print Menus
 def print_menu(menus):
-    line = "-" * len(" | ".join(menus))
+    # Create a new list with the numbered menu
+    numbered_menu = [f"{i+1}.{menu}" for i, m in enumerate(menus)]
+    line = "-" * len(" | ".join(numbered_menu))
     print(line)
-    print(" | ".join(menus))
+    print(" | ".join(numbered_menu))
     print(line)
 
 # Which workout fits into which unit of measurement
@@ -24,7 +26,7 @@ converters = {"WALK": 1.39,
               "GYM": 31,
               "BADMINTON": 3
               }
-
+# If the user enters a number, convert it to the workout
 number_to_workout = {"1": "WALK",
                     "2": "RUN",
                     "3": "BIKE",
@@ -32,6 +34,8 @@ number_to_workout = {"1": "WALK",
                     "5": "SKATING",
                     "6": "GYM",
                     "7": "BADMINTON"}
+
+
 
 if __name__ == "__main__":
     print_menu(workout_menu)
