@@ -46,13 +46,13 @@ def login_or_register():
     logged = False
     # User can log in or register
     while not logged:
-        logreg = input("Please Log in or Register, (or exit): ").replace(" ", "").lower()
-        if logreg == "register":
+        logreg = input("Please Log in (1) or Register (2) , or exit (3): ").lower()
+        if logreg in ("2", "register", "reg"):
             register()
-        elif logreg == "login":
+        elif logreg in ("1", "login", "log in", "log"):
             logged, user_id = login()
 
-        elif logreg == "exit":
+        elif logreg in ("3", "exit", "quit"):
             print("Exiting...")
             exit()
         # This won't be needed in gui

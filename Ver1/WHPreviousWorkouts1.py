@@ -26,7 +26,7 @@ def previous_workouts(user_id):
                 # Print the workouts that belong to the user
                 print(f" {workouts[1]:^3} | {workouts[4]} | {workouts[2]:^{max_length}} | {workouts[5]:^6} | {workouts[3]:^4}")
     while True:
-        select = input("Select a workout to view the lap times: ")
+        select = input("Select a workout to view the lap times: (or go 'back') ")
         if select.lower() == "back":
             break
 

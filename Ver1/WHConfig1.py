@@ -2,7 +2,7 @@
 This Section is where the miscellaneous things happen like defining the rate of speed, menus, and small functions.
 """
 # Menus
-menu = ["Workout", "Previous Workouts", "Contact Us", "Log Out"]
+menu = ["1. Workout", "2. Previous Workouts", "3. Contact Us", "4. Log Out"]
 workout_menu = ["WALK", "RUN", "BIKE", "BASKETBALL", "SKATING", "GYM", "BADMINTON"]
 # Print Menus
 def print_menu(menus):
@@ -13,7 +13,7 @@ def print_menu(menus):
 
 # Which workout fits into which unit of measurement
 kilometres = ["WALK", "RUN", "BIKE"]
-kilojoules = ["HIGH JUMP", "GYM", "BADMINTON", "BASKETBALL", "SKATING"]
+kilojoules = ["GYM", "BADMINTON", "BASKETBALL", "SKATING"]
 
 # The convert rate for time * multiplier for each workout
 converters = {"WALK": 1.39,
@@ -21,10 +21,17 @@ converters = {"WALK": 1.39,
               "BIKE": 6.94,
               "BASKETBALL": 0.75,
               "SKATING": 20,
-              "HIGH JUMP": 0.5,
               "GYM": 31,
               "BADMINTON": 3
               }
+
+number_to_workout = {"1": "WALK",
+                    "2": "RUN",
+                    "3": "BIKE",
+                    "4": "BASKETBALL",
+                    "5": "SKATING",
+                    "6": "GYM",
+                    "7": "BADMINTON"}
 
 if __name__ == "__main__":
     print_menu(workout_menu)
