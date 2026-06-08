@@ -10,6 +10,7 @@ def print_menu(menus):
     print(line)
     print(" | ".join(menus))
     print(line)
+
 # Which workout fits into which unit of measurement
 kilometres = ["WALK", "RUN", "BIKE"]
 kilojoules = ["HIGH JUMP", "GYM", "BADMINTON", "BASKETBALL", "SKATING"]

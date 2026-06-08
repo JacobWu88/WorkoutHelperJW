@@ -18,8 +18,6 @@ def workout(user_id):
          special = "m"
         elif workout_name in cf.kilojoules:
          special = "Kj"
-        else:
-            print("Invalid Workout")
         # Get the multiplier for the workout
         multiplier = cf.converters.get(workout_name)
         # Give each workout a unique ID
@@ -81,7 +79,8 @@ def workout(user_id):
         if not lapped:
             with open("lap.txt", "a") as file:
                 file.write(f"\n{workout_id} {user_id} {workout_name} {special_value}{special} {total_time}s")
-
+    else:
+        print("Invalid Workout")
 if __name__ == "__main__":
     # This user_id is for testing
     workout(9999)
