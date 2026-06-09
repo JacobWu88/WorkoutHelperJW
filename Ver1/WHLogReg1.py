@@ -19,7 +19,7 @@ def register():
         except FileNotFoundError:
             users = []
 
-        # Check if username already exists
+        # Check if a username already exists
         username_exists = False
         for user in users:
             user_data = user.split()

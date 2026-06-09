@@ -20,18 +20,18 @@ while True:
     while True:
         # Print the main menu
         cf.print_menu(cf.menu)
-        menu_option = input("what do you want to do? ").lower()
+        menu_option = input("what do you want to do? ").lower().replace(" ", "")
         if menu_option in ("1", "workout", "work", "w"):
             # Print the workout menu
             cf.print_menu(cf.workout_menu)
             # Bring the user_id in so it can record the workout
             wk.workout(user_id)
-        elif menu_option in ("2", "previous workouts", "previous", "p"):
+        elif menu_option in ("2", "previousworkouts", "previous", "p"):
             pw.previous_workouts(user_id)
         # Contact Us
-        elif menu_option in ("3", "contact us", "contact", "c"):
+        elif menu_option in ("3", "contactus", "contact", "c"):
             cu.contact_us()
-        elif menu_option in ("4", "logout", "log out", "exit", "quit"):
+        elif menu_option in ("4", "logout", "exit", "quit"):
             print("Logging out...")
             exit()
         else:
