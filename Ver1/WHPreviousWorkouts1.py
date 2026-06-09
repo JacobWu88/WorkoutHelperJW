@@ -29,7 +29,6 @@ def previous_workouts(user_id):
         select = input("Select a workout to view the lap times: (or go 'back') ")
         if select.lower() == "back":
             break
-
         found_workout = False
         with open("lap.txt", "r") as file:
             for lap in file:
@@ -44,9 +43,9 @@ def previous_workouts(user_id):
                         # Zip the data together and pair them
                         lap_it = iter(lap_data)
                         lap_pairs = list(zip(lap_it, lap_it))
-                        print(f"\033[4m {'distance'} | {'time'} \033[0m")
+                        print(f"\033[4m {'unit':^8} | {'time':^6} \033[0m")
                         for pair in lap_pairs:
-                            print(f" {pair[0]:^8} | {pair[1]}")
+                            print(f" {pair[0]:^8} | {pair[1]:^6}")
                     else:
                         print("You don't have permission to view this workout.")
                     break
@@ -58,4 +57,4 @@ def previous_workouts(user_id):
 
 
 if __name__ == "__main__":
-    previous_workouts(6)
+    previous_workouts(9999)
