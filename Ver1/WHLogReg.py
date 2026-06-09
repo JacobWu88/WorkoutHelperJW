@@ -1,4 +1,4 @@
-import WHConfig1 as cf
+import WHConfig as cf
 
 def register():
     # Enter username and password

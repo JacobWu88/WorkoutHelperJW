@@ -3,7 +3,7 @@ This section is for the workout.
 """
 
 import time
-import WHConfig1 as cf
+import WHConfig as cf
 
 def workout(user_id):
     # Convert the time to the correct unit

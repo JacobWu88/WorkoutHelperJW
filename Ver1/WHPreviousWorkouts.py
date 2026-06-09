@@ -2,7 +2,7 @@
 This Section shows Previous Workouts in the format of Date | Workout | Time
 """
 
-import WHConfig1 as cf
+import WHConfig as cf
 
 def previous_workouts(user_id):
     # Find the longest workout option name

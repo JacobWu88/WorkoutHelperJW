@@ -2,12 +2,12 @@
 This is the main script where the central logic happens.
 """
 
-import WHConfig1 as cf
-import WHLogReg1 as lg
-import WHLockHomeScreen1 as lhs
-import WHWorkout1 as wk
-import WHPreviousWorkouts1 as pw
-import WHContactUs1 as cu
+import WHConfig as cf
+import WHLogReg as lg
+import WHLockHomeScreen as lhs
+import WHWorkout as wk
+import WHPreviousWorkouts as pw
+import WHContactUs as cu
 
 while True:
     # Lock Screen
