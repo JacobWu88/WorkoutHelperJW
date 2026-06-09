@@ -6,7 +6,7 @@ import WHConfig as cf
 import WHLogReg as lg
 import WHLockHomeScreen as lhs
 import WHWorkout as wk
-import WHPreviousWorkouts as pw
+import WHPreviousWorkouts1 as pw
 import WHContactUs as cu
 
 while True:
