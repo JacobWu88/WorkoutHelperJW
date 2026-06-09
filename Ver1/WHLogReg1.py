@@ -43,21 +43,22 @@ def login():
 
 # Intro
 def login_or_register():
-    logged = False
     # User can log in or register
-    while not logged:
+    while True:
         logreg = input("Please Log in (1) or Register (2) , or exit (3): ").lower()
-        if logreg in ("2", "register", "reg"):
-            register()
-        elif logreg in ("1", "login", "log in", "log"):
+        # Login
+        if logreg in ("1", "login", "log in", "log"):
             logged, user_id = login()
-
+            if logged:
+                return True, user_id
+        # Register
+        elif logreg in ("2", "register", "reg"):
+            register()
+        # Exit
         elif logreg in ("3", "exit", "quit"):
             print("Exiting...")
             exit()
-        # This won't be needed in gui
         else:
             print("Invalid Input!")
-    return logged, user_id
 if __name__ == "__main__":
     login_or_register()
