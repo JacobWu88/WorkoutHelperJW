@@ -7,7 +7,7 @@ workout_menu = ["WALK", "RUN", "BIKE", "BASKETBALL", "SKATING", "GYM", "BADMINTO
 # Print Menus
 def print_menu(menus):
     # Create a new list with the numbered menu
-    numbered_menu = [f"{i+1}.{menu}" for i, m in enumerate(menus)]
+    numbered_menu = [f"{i+1}.{menu}" for i, menu in enumerate(menus)]
     line = "-" * len(" | ".join(numbered_menu))
     print(line)
     print(" | ".join(numbered_menu))
