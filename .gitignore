@@ -218,8 +218,8 @@ __marimo__/
 .streamlit/secrets.toml
 
 # User data
-Ver1/users.txt
+Assessment scripts/users.txt
 # Workout history
-Ver1/workout_history.txt
+Assessment scripts/workout_history.txt
 # Laps
-Ver1/lap.txt
+Assessment scripts/lap.txt
