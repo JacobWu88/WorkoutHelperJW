@@ -1,3 +1,5 @@
+import WHConfig1 as cf
+
 def register():
     # Enter username and password
     try:
@@ -9,13 +11,32 @@ def register():
     except FileNotFoundError:
         # If the file doesn't exist or empty, start at ID 1
         next_id = 1
-    username = input("username: ")
+    while True:
+        username = input("username: ")
+        try:
+            with open("users.txt", "r") as file:
+                users = file.readlines()
+        except FileNotFoundError:
+            users = []
+
+        # Check if username already exists
+        username_exists = False
+        for user in users:
+            user_data = user.split()
+            if user_data[1] == username:
+                username_exists = True
+                print("Username Already Exists!")
+                break
+        if not username_exists:
+            break
     password = input("Password: ")
     # Write username and password to a file
     with open("users.txt", "a") as file:
         # ID for future reference
         file.write(f"{next_id} {username} {password}\n")
     print("Account Created!")
+    return None
+
 
 def login():
     username_input = input("Username: ")
