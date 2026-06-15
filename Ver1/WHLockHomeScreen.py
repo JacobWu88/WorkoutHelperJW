@@ -1,19 +1,41 @@
+import WHConfig as cf
+import tkinter as tk
 import time
 
-def lock_screen():
-    print("Welcome!")
-    print("This is the Workout Helper, for all your workout needs!")
-    return
+class WorkoutHelperApp:
+    def __init__(self):
+        root = cf.root(self)
+        self.date_label = tk.Label(root, font=("arial", 18, "bold"))
+        self.date_label.grid(column=0, row=1)
 
-def home_screen():
-    # Display the current date and time
-    current_Date = time.strftime("%d/%m/%Y")
-    current_Time = time.strftime("%H:%M:%S")
-    print(f"Date: {current_Date}")
-    print(f"Time: {current_Time}")
-    return
+        self.time_label = tk.Label(root, font=("arial", 18, "bold"))
+        self.time_label.grid(column=0, row=2)
 
+        self.update_time()
 
+    def show_lock_screen(self):
+        welcome = tk.Label(self.root,
+            text="Welcome!",
+            font=("Arial", 24))
+        welcome.grid(row=0, column=0, columnspan=2, pady=20)
+
+        description = tk.Label(self.root,
+            text="This is the Workout Helper,\nfor all your workout needs!",
+            font=("Arial", 14))
+        description.grid(row=1, column=0, columnspan=2)
+
+    def update_time(self):
+        current_date = time.strftime("%d/%m/%Y")
+        current_time = time.strftime("%H:%M:%S")
+
+        self.date_label.config(text=f"Date: {current_date}")
+        self.time_label.config(text=f"Time: {current_time}")
+        # Update every 1000ms (1 second)
+        self.root.after(1000, self.update_time)
+
+if __name__ == "__main__":
+    app = WorkoutHelperApp()
+    app.root.mainloop()
 
 
 
