@@ -3,15 +3,6 @@ import tkinter as tk
 import time
 
 class WorkoutHelperApp:
-    def __init__(self):
-        root = cf.root(self)
-        self.date_label = tk.Label(root, font=("arial", 18, "bold"))
-        self.date_label.grid(column=0, row=1)
-
-        self.time_label = tk.Label(root, font=("arial", 18, "bold"))
-        self.time_label.grid(column=0, row=2)
-
-        self.update_time()
 
     def show_lock_screen(self):
         welcome = tk.Label(self.root,
@@ -32,6 +23,16 @@ class WorkoutHelperApp:
         self.time_label.config(text=f"Time: {current_time}")
         # Update every 1000ms (1 second)
         self.root.after(1000, self.update_time)
+
+    def __init__(self):
+        self.root = cf.root()
+        self.date_label = tk.Label(self.root, font=("arial", 18, "bold"))
+        self.date_label.grid(column=0, row=1)
+
+        self.time_label = tk.Label(self.root, font=("arial", 18, "bold"))
+        self.time_label.grid(column=0, row=2)
+
+        self.update_time()
 
 if __name__ == "__main__":
     app = WorkoutHelperApp()

@@ -1,5 +1,3 @@
-import WHConfig as cf
-
 def register():
     # Enter username and password
     try:
