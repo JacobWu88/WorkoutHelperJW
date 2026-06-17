@@ -4,11 +4,14 @@ This Section is where the miscellaneous things happen like defining the rate of 
 
 import tkinter as tk
 
-def root():
+def create_window():
     root = tk.Tk()
     root.title("Workout Helper")
     root.geometry("300x600")
     return root
+def clear_screen():
+    for widget in root.winfo_children():
+        widget.destroy()
 # Menus
 menu = ["Workout", "Previous Workouts", "Contact Us", "Log Out"]
 workout_menu = ["WALK", "RUN", "BIKE", "BASKETBALL", "SKATING", "GYM", "BADMINTON", "SWIMMING", "HIKE",]
@@ -50,4 +53,5 @@ number_to_workout = {"1": "WALK",
 
 
 if __name__ == "__main__":
+    root = root()
     print_menu(workout_menu)

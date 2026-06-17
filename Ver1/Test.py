@@ -19,7 +19,7 @@ class WorkoutHelperApp:
         leave.grid(row=4, column=0, pady=10)
 
     def __init__(self):
-        self.root = cf.root()
+        self.root = cf.create_window()
         self.root.title("Workout Helper")
         self.root.geometry("300x200")
         self.login_or_register()
