@@ -1,14 +1,34 @@
 import tkinter as tk
 import WHConfig as cf
-from Ver1.WHConfig import clear_screen
 
 
 class WorkoutHelperApp:
     def clear_window(self):
         for widget in self.root.winfo_children():
             widget.destroy()
-    def register(self):
+
+    def show_screen(self):
         # Enter username and password
+        username_label = tk.Label(self.root, text="Username: ")
+        username_label.grid(row=1, column=0, pady=10)
+        password_label = tk.Label(self.root, text="Password: ")
+        password_label.grid(row=2, column=0, pady=10)
+        username_input = tk.Entry(self.root, width=20)
+        username_input.grid(row=1, column=2, pady=10)
+        password_input = tk.Entry(self.root, width=20, show="*")
+        password_input.grid(row=2, column=2, pady=10)
+        return username_input, password_input
+
+    def register(self):
+        for widget in self.root.winfo_children():
+            widget.destroy()
+        title_label = tk.Label(self.root, text="REGISTER", font=("Arial", 24))
+        title_label.grid(row=0, column=2, pady=20)
+        username, password = self.show_screen()
+        register_button = tk.Button(self.root, text="Register", command=lambda:self.register_check(username, password))
+        register_button.grid(row=3, column=2, pady=10)
+
+    def register_check(self, username, password):
         try:
             # Read the file
             with open("users.txt", "r") as file:
@@ -19,11 +39,6 @@ class WorkoutHelperApp:
             # If the file doesn't exist or empty, start at ID 1
             next_id = 1
         while True:
-            username_label = tk.Label(self.root, text="Username: ")
-            username_label.grid(row=0, column=0, pady=10)
-
-            username = tk.Entry(self.root, width=20)
-            username.grid(row=0, column=2, pady=10)
             try:
                 with open("users.txt", "r") as file:
                     users = file.readlines()
@@ -40,7 +55,6 @@ class WorkoutHelperApp:
                     break
             if not username_exists:
                 break
-        password = input("Password: ")
         # Write username and password to a file
         with open("users.txt", "a") as file:
             # ID for future reference
@@ -54,15 +68,8 @@ class WorkoutHelperApp:
             widget.destroy()
         title_label = tk.Label(self.root, text="LOGIN", font=("Arial", 24))
         title_label.grid(row=0, column=2, pady=20)
-        username_label = tk.Label(self.root, text="Username: ")
-        username_label.grid(row=1, column=0, pady=10)
-        password_label = tk.Label(self.root, text="Password: ")
-        password_label.grid(row=2, column=0, pady=10)
-        username_input = tk.Entry(self.root, width=20)
-        username_input.grid(row=1, column=2, pady=10)
-        password_input = tk.Entry(self.root, width=20, show="*")
-        password_input.grid(row=2, column=2, pady=10)
-        login_button = tk.Button(self.root, text="Login", command=lambda:self.verify(username_input.get(), password_input.get()))
+        username, password = self.show_screen()
+        login_button = tk.Button(self.root, text="Login", command=lambda:self.verify(username, password))
         login_button.grid(row=3, column=2, pady=10)
 
     def verify(self, username_input, password_input):
