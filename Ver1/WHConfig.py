@@ -9,8 +9,8 @@ def create_window():
     root.title("Workout Helper")
     root.geometry("300x600")
     return root
-def clear_screen():
-    for widget in root.winfo_children():
+def clear_screen(self):
+    for widget in self.root.winfo_children():
         widget.destroy()
 # Menus
 menu = ["Workout", "Previous Workouts", "Contact Us", "Log Out"]
