@@ -1,14 +1,10 @@
 import tkinter as tk
 import WHConfig as cf
 
-
 class WorkoutHelperApp:
     def back(self):
         back_button = tk.Button(self.root, text="Back", width=10, command=self.login_or_register)
         back_button.grid(row=0, column=0, pady=10)
-    def clear_window(self):
-        for widget in self.root.winfo_children():
-            widget.destroy()
 
     def show_screen(self):
         # Enter username and password
@@ -24,7 +20,7 @@ class WorkoutHelperApp:
         return username_input, password_input
 
     def register(self):
-        self.clear_window()
+        cf.clear_screen(self.root)
         self.back()
         title_label = tk.Label(self.root, text="REGISTER", font=("Arial", 24))
         title_label.grid(row=0, column=2, pady=20)
@@ -63,7 +59,7 @@ class WorkoutHelperApp:
                         break
             if username_exists:
                 error_label = tk.Label(self.root, text="Username Already Exists!")
-                error_label.grid(row=4, column=2, pady=10)
+                error_label.grid(row=4, column=2, pady=10, wraplength=300)
                 self.root.after(2000, error_label.destroy)
                 return False
         # Write username and password to a file
@@ -72,12 +68,12 @@ class WorkoutHelperApp:
             file.write(f"{next_id} {username} {password}\n")
             registered_label = tk.Label(self.root, text="Account Created!")
             registered_label.grid(row=4, column=2, pady=10)
-            self.root.after(1000, self.clear_window)
+            self.root.after(1000, cf.clear_screen(self.root))
             return True
 
 
     def login(self):
-        self.clear_window()
+        cf.clear_screen(self.root)
         self.back()
         title_label = tk.Label(self.root, text="LOGIN", font=("Arial", 24))
         title_label.grid(row=0, column=2, pady=20)
@@ -86,12 +82,15 @@ class WorkoutHelperApp:
         login_button.grid(row=3, column=2, pady=10)
 
     def verify(self, username_input, password_input):
+        username_input = username_input.get()
+        password_input = password_input.get()
+        print(username_input, password_input)
         try:
             with open("users.txt", "r") as file:
                 users = file.readlines()
         except FileNotFoundError:
-            error_label = tk.Label(self.root, text="Password or Username is incorrect!")
-            error_label.grid(row=4, column=2, pady=10)
+            error_label = tk.Label(self.root, text="Password or Username is incorrect!", wraplength=200)
+            error_label.grid(row=4, column=2)
             self.root.after(2000, error_label.destroy)
             return False, None
 
@@ -102,28 +101,27 @@ class WorkoutHelperApp:
                 if user_data[1] == username_input and user_data[2] == password_input:
                     logged_in_label = tk.Label(self.root, text=f"Welcome, {user_data[1]}!")
                     logged_in_label.grid(row=4, column=2, pady=10)
-                    self.root.after(1000, self.clear_window)
+                    self.root.after(1000, cf.clear_screen(self.root))
                     # Get and return the user_id
                     user_id = user_data[0]
                     return True, user_id
             except IndexError:
-                print("Username or Password is incorrect!")
+                print("index")
 
-        error_label = tk.Label(self.root, text="Password or Username is incorrect!")
-        error_label.grid(row=4, column=2, pady=10)
+        error_label = tk.Label(self.root, text="Password or Username is incorrect!", wraplength=200)
+        error_label.grid(row=4, column=2)
         self.root.after(2000, error_label.destroy)
         return False, None
 
     # Intro
     def login_or_register(self):
-        self.clear_window()
+        cf.clear_screen(self.root)
         # User can log in or register
         logreg_label = tk.Label(self.root, text="Workout Helper", font=("Arial", 24))
         logreg_label.grid(row=1, column=2, pady=10)
         # Login
         login = tk.Button(self.root, text="Login", width=10, command=self.login )
         login.grid(row=2, column=2, pady=10)
-        # logged, user_id = self.login()
         # Register
         register = tk.Button(self.root, text="Register", width=10, command=self.register )
         register.grid(row=3, column=2, pady=10)

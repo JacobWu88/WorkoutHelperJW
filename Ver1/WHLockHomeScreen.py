@@ -15,6 +15,12 @@ class WorkoutHelperApp:
             font=("Arial", 14))
         description.grid(row=1, column=0, columnspan=2)
 
+    def show_home_screen(self):
+        title_label = tk.Label(self.root, text="HOME", font=("Arial", 24))
+        title_label.grid(row=0, column=0, pady=20)
+
+
+        self.update_time()
     def update_time(self):
         current_date = time.strftime("%d/%m/%Y")
         current_time = time.strftime("%H:%M:%S")
@@ -25,14 +31,14 @@ class WorkoutHelperApp:
         self.root.after(1000, self.update_time)
 
     def __init__(self):
-        self.root = cf.root()
+        self.root = cf.create_window()
         self.date_label = tk.Label(self.root, font=("arial", 18, "bold"))
         self.date_label.grid(column=0, row=1)
 
         self.time_label = tk.Label(self.root, font=("arial", 18, "bold"))
         self.time_label.grid(column=0, row=2)
 
-        self.update_time()
+        self.show_lock_screen()
 
 if __name__ == "__main__":
     app = WorkoutHelperApp()

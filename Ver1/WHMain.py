@@ -1,41 +1,33 @@
 """
 This is the main script where the central logic happens.
 """
-
 import WHConfig as cf
-import WHLogReg as lg
+import WHLogRegTK as lg
 import WHLockHomeScreen as lhs
 import WHWorkout as wk
 import WHPreviousWorkouts as pw
 import WHContactUs as cu
+import tkinter as tk
 
-while True:
-    # Lock Screen
-    lhs.lock_screen()
-    # Check whether if the user is logged in, define user_id. Log in or Register
-    logged, user_id = lg.login_or_register()
-    # Home Screen
-    lhs.home_screen()
+class WorkoutHelperApp:
+    def __init__(self):
+        self.root = cf.create_window()
+        self.user_id = None
 
-    while True:
-        # Print the main menu
-        cf.print_menu(cf.menu)
-        menu_option = input("what do you want to do? ").lower().replace(" ", "")
-        if menu_option in ("1", "workout", "work", "w"):
-            # Print the workout menu
-            cf.print_menu(cf.workout_menu)
-            # Bring the user_id in so it can record the workout
-            wk.workout(user_id)
-        elif menu_option in ("2", "previousworkouts", "previous", "p"):
-            pw.previous_workouts(user_id)
-        # Contact Us
-        elif menu_option in ("3", "contactus", "contact", "c"):
-            cu.contact_us()
-        elif menu_option in ("4", "logout", "exit", "quit"):
-            print("Logging out...")
-            exit()
-        else:
-            print("Invalid Input!")
+        self.lock_home = lhs
+        self.log_reg = lg
+        # Lock Screen
+        self.show_lock_screen()
+
+    def show_lock_screen(self):
+        cf.clear_screen(self.root)
+        lhs.WorkoutHelperApp()
+
+        continue_button = tk.Button(self.root, text="Continue", command=lambda: self.log_reg.WorkoutHelperApp())
+        continue_button.grid(row=1, column=0, pady=10)
 
 
+if __name__ == "__main__":
+    app = WorkoutHelperApp()
+    app.root.mainloop()
 

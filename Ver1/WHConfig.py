@@ -7,22 +7,17 @@ import tkinter as tk
 def create_window():
     root = tk.Tk()
     root.title("Workout Helper")
-    root.geometry("300x600")
+    root.geometry("600x1200")
     return root
-def clear_screen(self):
-    for widget in self.root.winfo_children():
+def clear_screen(root):
+    for widget in root.winfo_children():
         widget.destroy()
 # Menus
 menu = ["Workout", "Previous Workouts", "Contact Us", "Log Out"]
 workout_menu = ["WALK", "RUN", "BIKE", "BASKETBALL", "SKATING", "GYM", "BADMINTON", "SWIMMING", "HIKE",]
 # Print Menus
-def print_menu(menus):
-    # Create a new list with the numbered menu
-    numbered_menu = [f"{i+1}.{menu}" for i, menu in enumerate(menus)]
-    line = "-" * len(" | ".join(numbered_menu))
-    print(line)
-    print(" | ".join(numbered_menu))
-    print(line)
+#def print_menu(menus):
+
 
 # Which workout fits into which unit of measurement
 kilometres = ["WALK", "RUN", "BIKE", "HIKE"]
