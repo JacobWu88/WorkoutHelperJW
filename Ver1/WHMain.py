@@ -7,6 +7,8 @@ import WHLockHomeScreen as lhs
 import WHWorkout as wk
 import WHPreviousWorkouts as pw
 import WHContactUs as cu
+from WHLockHomeScreen import LockHome
+from WHLogRegTK import LogReg
 import tkinter as tk
 
 class WorkoutHelperApp:
@@ -14,17 +16,28 @@ class WorkoutHelperApp:
         self.root = cf.create_window()
         self.user_id = None
 
-        self.lock_home = lhs
-        self.log_reg = lg
+        self.lhs = LockHome(self.root)
+        self.lg = LogReg(self.root, self.on_user_logged)
         # Lock Screen
-        self.show_lock_screen()
 
-    def show_lock_screen(self):
+        self.lhs.show_lock_screen()
+
+        continue_button = tk.Button(self.root, text="Continue", command=self.show_login_screen)
+        continue_button.grid(row=2, column=0, pady=10)
+
+    def show_login_screen(self):
+        self.lg.login_or_register()
+
+    def on_user_logged(self, user_id):
+        self.user_id = user_id
+        print(f"User logged in: {user_id}")
         cf.clear_screen(self.root)
-        lhs.WorkoutHelperApp()
+        self.show_main_menu()
 
-        continue_button = tk.Button(self.root, text="Continue", command=lambda: self.log_reg.WorkoutHelperApp())
-        continue_button.grid(row=1, column=0, pady=10)
+    def show_main_menu(self):
+        main_menu = tk.Frame(self.root)
+        main_menu.grid(row=0, column=0, pady=10)
+        cf.create_menu(main_menu,cf.menu)
 
 
 if __name__ == "__main__":

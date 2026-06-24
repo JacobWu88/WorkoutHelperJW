@@ -1,7 +1,7 @@
 import tkinter as tk
 import WHConfig as cf
 
-class WorkoutHelperApp:
+class LogReg:
     def back(self):
         back_button = tk.Button(self.root, text="Back", width=10, command=self.login_or_register)
         back_button.grid(row=0, column=0, pady=10)
@@ -84,7 +84,6 @@ class WorkoutHelperApp:
     def verify(self, username_input, password_input):
         username_input = username_input.get()
         password_input = password_input.get()
-        print(username_input, password_input)
         try:
             with open("users.txt", "r") as file:
                 users = file.readlines()
@@ -101,9 +100,12 @@ class WorkoutHelperApp:
                 if user_data[1] == username_input and user_data[2] == password_input:
                     logged_in_label = tk.Label(self.root, text=f"Welcome, {user_data[1]}!")
                     logged_in_label.grid(row=4, column=2, pady=10)
-                    self.root.after(1000, cf.clear_screen(self.root))
+                    self.root.after(1000, lambda: cf.clear_screen(self.root))
                     # Get and return the user_id
                     user_id = user_data[0]
+
+                    if self.on_login:
+                        self.root.after(1000, lambda: self.on_login(user_id))
                     return True, user_id
             except IndexError:
                 print("index")
@@ -129,11 +131,15 @@ class WorkoutHelperApp:
         leave = tk.Button(self.root, text="Exit", width=10, command=self.root.destroy)
         leave.grid(row=4, column=2, pady=10)
 
-    def __init__(self):
-        self.root = cf.create_window()
-        self.login_or_register()
+    def __init__(self, root, on_login=None):
+        self.on_login = on_login
+        if __name__ == "__main__":
+            self.root = cf.create_window()
+            self.login_or_register()
+        else:
+            self.root = root
 
 
 if __name__ == "__main__":
-    app = WorkoutHelperApp()
+    app = LogReg()
     app.root.mainloop()
