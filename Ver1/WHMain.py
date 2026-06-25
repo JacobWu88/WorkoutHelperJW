@@ -19,7 +19,8 @@ class WorkoutHelperApp:
         self.lhs = LockHome(self.root)
         self.lg = LogReg(self.root, self.on_user_logged)
         # Lock Screen
-
+        self.show_lock_screen()
+    def show_lock_screen(self):
         self.lhs.show_lock_screen()
 
         continue_button = tk.Button(self.root, text="Continue", command=self.show_login_screen)
@@ -37,7 +38,22 @@ class WorkoutHelperApp:
     def show_main_menu(self):
         main_menu = tk.Frame(self.root)
         main_menu.grid(row=0, column=0, pady=10)
-        cf.create_menu(main_menu,cf.menu)
+        cf.create_menu(main_menu,cf.menu, self.on_menu_item_click)
+
+
+    def on_menu_item_click(self, item_selected):
+        if item_selected == "Workout":
+            wk.Workout(self.root, self.user_id)
+        elif item_selected == "Previous Workouts":
+            pw.PreviousWorkouts(self.root, self.user_id)
+        elif item_selected == "Contact Us":
+            cu.ContactUs(self.root)
+        elif item_selected == "Log Out":
+            print("Logging out...")
+            self.user_id = None
+            self.show_lock_screen()
+        else:
+            print("Invalid menu item selected.")
 
 
 if __name__ == "__main__":

@@ -6,6 +6,7 @@ class LockHome:
 
     def show_lock_screen(self):
         print("Lock Screen")
+        cf.clear_screen(self.root)
         welcome = tk.Label(self.root,
             text="Welcome!",
             font=("Arial", 24))
@@ -45,5 +46,6 @@ class LockHome:
 
 
 if __name__ == "__main__":
-    app = LockHome()
+    root = cf.create_window()
+    app = LockHome(root)
     app.root.mainloop()

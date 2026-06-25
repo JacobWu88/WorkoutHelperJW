@@ -12,18 +12,13 @@ def create_window():
 def clear_screen(root):
     for widget in root.winfo_children():
         widget.destroy()
-def create_menu(root, menu_items):
+def create_menu(root, menu_items, callback):
     title_label = tk.Label(root, text="Workout Helper", font=("Arial", 24))
     title_label.grid(row=0, column=2, pady=20)
     for index, item in enumerate(menu_items):
-        item_button = tk.Button(root, text=item, command=lambda: on_button_click(menu_items))
+        item_button = tk.Button(root, text=item, command=lambda menu_items=item: callback(menu_items))
         item_button.grid(row=index+1, column=2, pady=10)
 
-def on_button_click(item):
-    return item
-
-def create_workout_menu():
-    pass
 # Menus
 menu = ["Workout", "Previous Workouts", "Contact Us", "Log Out"]
 workout_menu = ["WALK", "RUN", "BIKE", "BASKETBALL", "SKATING", "GYM", "BADMINTON", "SWIMMING", "HIKE",]
