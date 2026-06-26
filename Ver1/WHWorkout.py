@@ -205,11 +205,12 @@ class WorkoutTimer:
             cf.clear_screen(self.root)
             if self.on_back_callback:
                 self.on_back_callback()
-
-
-# Main window setup for testing
+"""
+# For testing
 if __name__ == "__main__":
-    root = tk.Tk()
-    root.title("Workout Helper")
-    app = WorkoutTimer(root, 9999)
-    root.mainloop()
+    app = WorkoutTimer(cf.create_window(), 9999)
+    app.root.mainloop()
+"""
+
+if __name__ == "__main__":
+    print("Please run 'WHMain.py' to use this program!")

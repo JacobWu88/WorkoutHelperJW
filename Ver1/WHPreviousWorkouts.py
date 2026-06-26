@@ -159,7 +159,7 @@ class PreviousWorkouts:
         if self.on_back_callback:
             self.on_back_callback()
 
-
+"""
 # Testing
 if __name__ == "__main__":
     root = tk.Tk()
@@ -167,3 +167,7 @@ if __name__ == "__main__":
     root.geometry("600x600")
     app = PreviousWorkouts(root, 9999)
     root.mainloop()
+"""
+
+if __name__ == "__main__":
+    print("Please run 'WHMain.py' to use this program!")

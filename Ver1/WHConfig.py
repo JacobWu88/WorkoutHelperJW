@@ -7,7 +7,7 @@ import tkinter as tk
 def create_window():
     root = tk.Tk()
     root.title("Workout Helper")
-    root.geometry("600x1200")
+    root.geometry("400x600")
     return root
 def clear_screen(root):
     for widget in root.winfo_children():
@@ -43,19 +43,8 @@ converters = {"WALK": 1.39,
               "SWIMMING": 1.39,
               "HIKE": 1.39
               }
-# If the user enters a number, convert it to the workout
-number_to_workout = {"1": "WALK",
-                    "2": "RUN",
-                    "3": "BIKE",
-                    "4": "BASKETBALL",
-                    "5": "SKATING",
-                    "6": "GYM",
-                    "7": "BADMINTON",
-                     "8": "SWIMMING",
-                     "9": "HIKE"}
 
 
 
 if __name__ == "__main__":
-    root = create_window()
-    create_menu(root, menu, callback=None)
+    print("Please run 'WHMain.py' to use this program!")

@@ -26,8 +26,13 @@ class ContactUs:
         if self.on_back_callback:
             self.on_back_callback()
 
-
+"""
+# For testing
 if __name__ == "__main__":
     root = cf.create_window()
     app = ContactUs(root)
     root.mainloop()
+"""
+
+if __name__ == "__main__":
+    print("Please run 'WHMain.py' to use this program!")

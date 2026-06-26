@@ -6,7 +6,7 @@ import WHWorkout as wk
 import WHPreviousWorkouts as pw
 import WHContactUs as cu
 from WHLockHomeScreen import LockHome
-from WHLogRegTK import LogReg
+from WHLogReg import LogReg
 import tkinter as tk
 
 class WorkoutHelperApp:
