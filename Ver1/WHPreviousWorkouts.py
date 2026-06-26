@@ -1,6 +1,7 @@
 """
 This Section shows Previous Workouts in the format of Date | Workout | Time
 """
+from typing import overload
 
 import WHConfig as cf
 import tkinter as tk
@@ -93,9 +94,11 @@ class PreviousWorkouts:
             messagebox.showwarning("No Selection", "Please select a workout to view lap times!")
             return
 
-        # Get the workout ID from the selected row
-        workout_id = self.tree.item(selected_item[0])["values"][0]
-
+        # Get the workout details from the selected row
+        workout_values = self.tree.item(selected_item[0])["values"]
+        workout_id = workout_values[0]
+        date = workout_values[1]
+        workout_type = workout_values[2]
         try:
             with open("lap.txt", "r") as file:
                 found = False
@@ -105,7 +108,7 @@ class PreviousWorkouts:
                         # Check if this workout belongs to the user
                         if str(self.user_id) == lap_parts[1]:
                             found = True
-                            self.show_lap_window(lap_parts)
+                            self.show_lap_window(lap_parts, workout_type, date)
                             break
                         else:
                             messagebox.showerror("Permission Denied",
@@ -118,13 +121,14 @@ class PreviousWorkouts:
         except FileNotFoundError:
             messagebox.showinfo("No Lap Data", "No lap data file found.")
 
-    def show_lap_window(self, lap_parts):
+    def show_lap_window(self, lap_parts, workout_type, date):
         # Create a new window for lap times
         lap_window = tk.Toplevel(self.root)
-        lap_window.title("Lap Times")
-        lap_window.geometry("400x400")
+        lap_window.title(f"Lap Times - {workout_type} ")
+        lap_window.geometry("400x450")
 
-        tk.Label(lap_window, text="Lap Times", font=("Arial", 18, "bold")).pack(pady=10)
+        tk.Label(lap_window, text=f"Lap Times - {workout_type} - {date}", 
+                 font=("Arial", 18, "bold")).pack(pady=10)
 
         # Create treeview for laps
         columns = ("Unit", "Time")
