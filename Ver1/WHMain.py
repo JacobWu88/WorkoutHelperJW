@@ -18,7 +18,7 @@ class WorkoutHelperApp:
         self.lg = LogReg(self.root, self.on_user_logged)
         # Lock Screen
         self.show_lock_screen()
-
+        # Centre (almost) everything horizontally
         self.root.columnconfigure(0, weight=1)
 
 
@@ -30,13 +30,12 @@ class WorkoutHelperApp:
 
     def show_login_screen(self):
         self.lg.login_or_register()
-
+    # Define user ID
     def on_user_logged(self, user_id):
         self.user_id = user_id
-        print(f"User logged in: {user_id}")
         cf.clear_screen(self.root)
         self.show_main_menu()
-
+    # Go to the main menu
     def show_main_menu(self):
         main_menu = tk.Frame(self.root)
         main_menu.grid(row=0, column=0, pady=10, sticky="nsew")
@@ -44,23 +43,23 @@ class WorkoutHelperApp:
 
 
     def on_menu_item_click(self, item_selected):
+        # Menu items to actual pages
         if item_selected == "Workout":
             cf.clear_screen(self.root)
             wk.WorkoutTimer(self.root, self.user_id, self.show_main_menu)
+
         elif item_selected == "Previous Workouts":
             cf.clear_screen(self.root)
             pw.PreviousWorkouts(self.root, self.user_id, self.show_main_menu)
+
         elif item_selected == "Contact Us":
             cf.clear_screen(self.root)
             cu.ContactUs(self.root, self.show_main_menu)
+
         elif item_selected == "Log Out":
-            print("Logging out...")
             self.user_id = None
             cf.clear_screen(self.root)
             self.show_lock_screen()
-        else:
-            print("Invalid menu item selected.")
-
 
 if __name__ == "__main__":
     app = WorkoutHelperApp()
