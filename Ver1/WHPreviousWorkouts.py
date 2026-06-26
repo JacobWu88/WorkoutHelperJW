@@ -73,16 +73,16 @@ class PreviousWorkouts:
                     messagebox.showinfo("No Workouts", "You have no previous workouts!")
                     return
 
-                for workout in user_workouts:
+                for index, workout in enumerate(user_workouts, start=1):
                     workouts = workout.split()
                     # workouts format: [user_id, workout_id, workout_name, special_value, date, time]
                     self.tree.insert("", "end", values=(
-                        workouts[1],  # No.
+                        index,  # No.
                         workouts[4],  # Date
                         workouts[2],  # Workout
                         workouts[5],  # Time
                         workouts[3]   # m/kj
-                    ))
+                    ), tags=(str(workouts[1]),))
 
         except FileNotFoundError:
             messagebox.showinfo("No Workouts", "You have no previous workouts!")
@@ -95,10 +95,10 @@ class PreviousWorkouts:
             return
 
         # Get the workout details from the selected row
-        workout_values = self.tree.item(selected_item[0])["values"]
-        workout_id = workout_values[0]
-        date = workout_values[1]
-        workout_type = workout_values[2]
+        item = self.tree.item(selected_item[0])
+        workout_id = item["tags"][0]
+        date = item["values"][1]
+        workout_type = item["values"][2]
         try:
             with open("lap.txt", "r") as file:
                 found = False
