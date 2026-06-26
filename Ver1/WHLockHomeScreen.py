@@ -5,7 +5,6 @@ import time
 class LockHome:
 
     def show_lock_screen(self):
-        print("Lock Screen")
         cf.clear_screen(self.root)
         welcome = tk.Label(self.root,
             text="Welcome!",
