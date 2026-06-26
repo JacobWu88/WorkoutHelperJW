@@ -56,7 +56,7 @@ class WorkoutTimer:
 
         # Start button
         self.start_btn = tk.Button(main_frame, text="Start Workout", font=("Arial", 14),
-                                   bg="#4CAF50", fg="white", command=self.start_workout)
+                                   bg="#4CAF50", command=self.start_workout)
         self.start_btn.pack(pady=10)
 
         # Timer display
@@ -65,12 +65,12 @@ class WorkoutTimer:
 
         # Lap button
         self.lap_btn = tk.Button(main_frame, text="Lap", font=("Arial", 14),
-                                 bg="#2196F3", fg="white", command=self.record_lap, state="disabled")
+                                 bg="#2196F3", command=self.record_lap, state="disabled")
         self.lap_btn.pack(pady=5)
 
         # Stop button
         self.stop_btn = tk.Button(main_frame, text="Stop Workout", font=("Arial", 14),
-                                  bg="#f44336", fg="white", command=self.stop_workout, state="disabled")
+                                  bg="#f44336", command=self.stop_workout, state="disabled")
         self.stop_btn.pack(pady=5)
 
         # Lap display
