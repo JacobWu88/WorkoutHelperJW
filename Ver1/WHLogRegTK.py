@@ -38,37 +38,40 @@ class LogReg:
             error_label.grid(row=4, column=0, pady=10)
             self.root.after(2000, error_label.destroy)
             return False
+        
+        users = []
         try:
             # Read the file
             with open("users.txt", "r") as file:
+                users = file.readlines()
                 # count existing lines to find the next ID
-                # "_" is used to show that the variable is needed but not for its value
-                next_id = sum(1 for _ in file) + 1
+                next_id = len(users) + 1
         except FileNotFoundError:
             # If the file doesn't exist or empty, start at ID 1
             next_id = 1
-            users = []
 
-            # Check if a username already exists
-            username_exists = False
-            for user in users:
-                user_data = user.split()
-                if len(user_data) >= 2:
-                    if user_data[1] == username:
-                        username_exists = True
-                        break
-            if username_exists:
-                error_label = tk.Label(self.root, text="Username Already Exists!")
-                error_label.grid(row=4, column=0, pady=10, wraplength=300)
-                self.root.after(2000, error_label.destroy)
-                return False
+        # Check if a username already exists
+        username_exists = False
+        for user in users:
+            user_data = user.split()
+            if len(user_data) >= 2:
+                if user_data[1].casefold() == username.casefold():
+                    username_exists = True
+                    break
+        
+        if username_exists:
+            error_label = tk.Label(self.root, text="Username Already Exists!", fg="red", wraplength=300)
+            error_label.grid(row=4, column=0, pady=10)
+            self.root.after(2000, error_label.destroy)
+            return False
+        
         # Write username and password to a file
         with open("users.txt", "a") as file:
             # ID for future reference
             file.write(f"{next_id} {username} {password}\n")
-            registered_label = tk.Label(self.root, text="Account Created!")
+            registered_label = tk.Label(self.root, text="Account Created!", fg="green")
             registered_label.grid(row=4, column=0, pady=10)
-            self.root.after(1000, cf.clear_screen(self.root))
+            self.root.after(1000, self.login_or_register)
             return True
 
 
@@ -96,19 +99,16 @@ class LogReg:
         for user in users:
             user_data = user.split()
             # Check if said username and password exists in the file
-            try:
-                if user_data[1] == username_input and user_data[2] == password_input:
-                    logged_in_label = tk.Label(self.root, text=f"Welcome, {user_data[1]}!")
-                    logged_in_label.grid(row=4, column=0, pady=10)
-                    self.root.after(1000, lambda: cf.clear_screen(self.root))
-                    # Get and return the user_id
-                    user_id = user_data[0]
+            if user_data[1].casefold() == username_input.casefold() and user_data[2] == password_input:
+                logged_in_label = tk.Label(self.root, text=f"Welcome, {user_data[1]}!")
+                logged_in_label.grid(row=4, column=0, pady=10)
+                self.root.after(1000, lambda: cf.clear_screen(self.root))
+                # Get and return the user_id
+                user_id = user_data[0]
 
-                    if self.on_login:
-                        self.root.after(1000, lambda: self.on_login(user_id))
-                    return True, user_id
-            except IndexError:
-                print("index")
+                if self.on_login:
+                    self.root.after(1000, lambda: self.on_login(user_id))
+                return True, user_id
 
         error_label = tk.Label(self.root, text="Password or Username is incorrect!", wraplength=200)
         error_label.grid(row=4, column=0)
