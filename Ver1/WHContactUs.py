@@ -14,7 +14,7 @@ class ContactUs:
         self.contact_us_tk()
         self.on_back_callback = on_back_callback
 
-
+    # Contact us
     def contact_us_tk(self):
         title = tk.Label(self.root, text="Contact Us")
         title.grid(row=0, column=0)
@@ -27,6 +27,7 @@ class ContactUs:
         back_button = tk.Button(self.root, text="Back", command=self.go_back)
         back_button.grid(row=4, column=0)
 
+    # Back button
     def go_back(self):
         cf.clear_screen(self.root)
         if self.on_back_callback:

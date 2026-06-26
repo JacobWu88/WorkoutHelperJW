@@ -12,7 +12,9 @@ def create_window():
 def clear_screen(root):
     for widget in root.winfo_children():
         widget.destroy()
+
 def create_menu(root, menu_items, callback):
+    root.columnconfigure(2, weight=1)
     title_label = tk.Label(root, text="Workout Helper", font=("Arial", 24))
     title_label.grid(row=0, column=2, pady=20)
     for index, item in enumerate(menu_items):
@@ -56,4 +58,4 @@ number_to_workout = {"1": "WALK",
 
 if __name__ == "__main__":
     root = create_window()
-    create_menu(root, menu)
+    create_menu(root, menu, callback=None)

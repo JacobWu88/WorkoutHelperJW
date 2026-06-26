@@ -2,8 +2,6 @@
 This is the main script where the central logic happens.
 """
 import WHConfig as cf
-import WHLogRegTK as lg
-import WHLockHomeScreen as lhs
 import WHWorkout as wk
 import WHPreviousWorkouts as pw
 import WHContactUs as cu
@@ -20,6 +18,10 @@ class WorkoutHelperApp:
         self.lg = LogReg(self.root, self.on_user_logged)
         # Lock Screen
         self.show_lock_screen()
+
+        self.root.columnconfigure(0, weight=1)
+
+
     def show_lock_screen(self):
         self.lhs.show_lock_screen()
 
@@ -37,20 +39,24 @@ class WorkoutHelperApp:
 
     def show_main_menu(self):
         main_menu = tk.Frame(self.root)
-        main_menu.grid(row=0, column=0, pady=10)
+        main_menu.grid(row=0, column=0, pady=10, sticky="nsew")
         cf.create_menu(main_menu,cf.menu, self.on_menu_item_click)
 
 
     def on_menu_item_click(self, item_selected):
         if item_selected == "Workout":
-            wk.Workout(self.root, self.user_id)
+            cf.clear_screen(self.root)
+            wk.WorkoutTimer(self.root, self.user_id, self.show_main_menu)
         elif item_selected == "Previous Workouts":
-            pw.PreviousWorkouts(self.root, self.user_id)
+            cf.clear_screen(self.root)
+            pw.PreviousWorkouts(self.root, self.user_id, self.show_main_menu)
         elif item_selected == "Contact Us":
-            cu.ContactUs(self.root)
+            cf.clear_screen(self.root)
+            cu.ContactUs(self.root, self.show_main_menu)
         elif item_selected == "Log Out":
             print("Logging out...")
             self.user_id = None
+            cf.clear_screen(self.root)
             self.show_lock_screen()
         else:
             print("Invalid menu item selected.")

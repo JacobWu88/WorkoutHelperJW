@@ -4,27 +4,38 @@ import time
 import WHConfig as cf
 
 
+def get_next_workout_id():
+    try:
+        with open("workout_history.txt", "r") as file:
+            return sum(1 for _ in file) + 1
+    except FileNotFoundError:
+        return 1
+
+
 class WorkoutTimer:
-    def __init__(self, root, user_id):
+    # Define everything
+    def __init__(self, root, user_id, on_back_callback=None):
         self.root = root
         self.user_id = user_id
+        self.on_back_callback = on_back_callback
         self.workout_name = None
         self.start_time = None
         self.running = False
         self.lap_data = []
         self.multiplier = 1
         self.special = ""
-        self.workout_id = self.get_next_workout_id()
+        self.workout_id = get_next_workout_id()
+        self.workout_var = tk.StringVar()
+
+        self.start_btn = None
+        self.timer_label = None
+        self.lap_btn = None
+        self.stop_btn = None
+        self.lap_listbox = None
 
         self.setup_ui()
 
-    def get_next_workout_id(self):
-        try:
-            with open("workout_history.txt", "r") as file:
-                return sum(1 for _ in file) + 1
-        except FileNotFoundError:
-            return 1
-
+    # Convert time to a special unit
     def convert(self, timing):
         return timing * self.multiplier
 
@@ -39,7 +50,6 @@ class WorkoutTimer:
         # Workout selection
         tk.Label(main_frame, text="Select Workout:", font=("Arial", 14)).pack(pady=5)
 
-        self.workout_var = tk.StringVar()
         workout_dropdown = tk.OptionMenu(main_frame, self.workout_var, *cf.workout_menu)
         workout_dropdown.config(width=20, font=("Arial", 12))
         workout_dropdown.pack(pady=5)
@@ -68,7 +78,7 @@ class WorkoutTimer:
 
         lap_frame = tk.Frame(main_frame)
         lap_frame.pack(fill="both", expand=True)
-
+        # If lap scrollbar is needed
         scrollbar = tk.Scrollbar(lap_frame)
         scrollbar.pack(side="right", fill="y")
 
@@ -83,7 +93,7 @@ class WorkoutTimer:
 
     def start_workout(self):
         self.workout_name = self.workout_var.get()
-
+        # Check if the workout is valid
         if not self.workout_name or self.workout_name not in cf.workout_menu:
             messagebox.showerror("Error", "Please select a valid workout!")
             return
@@ -178,16 +188,23 @@ class WorkoutTimer:
                 f.write(f"\n{self.workout_id} {self.user_id} {self.workout_name} "
                         f"{special_value}{self.special} {total_time}s")
 
-        # Increment workout ID for next workout
+        # Workout ID for next workout
         self.workout_id += 1
 
+    # Go back to the main menu
     def go_back(self):
+        # if workout is running
         if self.running:
             if messagebox.askyesno("Warning", "Workout in progress. Are you sure you want to go back?"):
                 self.running = False
-                self.root.destroy()
+                cf.clear_screen(self.root)
+                if self.on_back_callback:
+                    self.on_back_callback()
+        # If workout isn't running
         else:
-            self.root.destroy()
+            cf.clear_screen(self.root)
+            if self.on_back_callback:
+                self.on_back_callback()
 
 
 # Main window setup for testing

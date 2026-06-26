@@ -4,29 +4,29 @@ import WHConfig as cf
 class LogReg:
     def back(self):
         back_button = tk.Button(self.root, text="Back", width=10, command=self.login_or_register)
-        back_button.grid(row=0, column=0, pady=10)
+        back_button.grid(row=0, column=0, pady=10, sticky="w")
 
     def show_screen(self):
         # Enter username and password
         username_label = tk.Label(self.root, text="Username: ")
-        username_label.grid(row=1, column=0, pady=10)
+        username_label.grid(row=1, column=0, pady=10, sticky="w")
         password_label = tk.Label(self.root, text="Password: ")
-        password_label.grid(row=2, column=0, pady=10)
+        password_label.grid(row=2, column=0, pady=10, sticky="w")
 
         username_input = tk.Entry(self.root, width=20)
-        username_input.grid(row=1, column=2, pady=10)
+        username_input.grid(row=1, column=0, pady=10)
         password_input = tk.Entry(self.root, width=20, show="*")
-        password_input.grid(row=2, column=2, pady=10)
+        password_input.grid(row=2, column=0, pady=10)
         return username_input, password_input
 
     def register(self):
         cf.clear_screen(self.root)
         self.back()
         title_label = tk.Label(self.root, text="REGISTER", font=("Arial", 24))
-        title_label.grid(row=0, column=2, pady=20)
+        title_label.grid(row=0, column=0, pady=20)
         username, password  = self.show_screen()
         register_button = tk.Button(self.root, text="Register", command=lambda:self.register_check(username, password))
-        register_button.grid(row=3, column=2, pady=10)
+        register_button.grid(row=3, column=0, pady=10)
 
 
     def register_check(self, username, password):
@@ -35,7 +35,7 @@ class LogReg:
 
         if not username or not password:
             error_label = tk.Label(self.root, text="Please fill in all fields!")
-            error_label.grid(row=4, column=2, pady=10)
+            error_label.grid(row=4, column=0, pady=10)
             self.root.after(2000, error_label.destroy)
             return False
         try:
@@ -59,7 +59,7 @@ class LogReg:
                         break
             if username_exists:
                 error_label = tk.Label(self.root, text="Username Already Exists!")
-                error_label.grid(row=4, column=2, pady=10, wraplength=300)
+                error_label.grid(row=4, column=0, pady=10, wraplength=300)
                 self.root.after(2000, error_label.destroy)
                 return False
         # Write username and password to a file
@@ -67,7 +67,7 @@ class LogReg:
             # ID for future reference
             file.write(f"{next_id} {username} {password}\n")
             registered_label = tk.Label(self.root, text="Account Created!")
-            registered_label.grid(row=4, column=2, pady=10)
+            registered_label.grid(row=4, column=0, pady=10)
             self.root.after(1000, cf.clear_screen(self.root))
             return True
 
@@ -76,10 +76,10 @@ class LogReg:
         cf.clear_screen(self.root)
         self.back()
         title_label = tk.Label(self.root, text="LOGIN", font=("Arial", 24))
-        title_label.grid(row=0, column=2, pady=20)
+        title_label.grid(row=0, column=0, pady=20)
         username, password = self.show_screen()
         login_button = tk.Button(self.root, text="Login", command=lambda:self.verify(username, password))
-        login_button.grid(row=3, column=2, pady=10)
+        login_button.grid(row=3, column=0, pady=10)
 
     def verify(self, username_input, password_input):
         username_input = username_input.get()
@@ -89,7 +89,7 @@ class LogReg:
                 users = file.readlines()
         except FileNotFoundError:
             error_label = tk.Label(self.root, text="Password or Username is incorrect!", wraplength=200)
-            error_label.grid(row=4, column=2)
+            error_label.grid(row=4, column=0)
             self.root.after(2000, error_label.destroy)
             return False, None
 
@@ -99,7 +99,7 @@ class LogReg:
             try:
                 if user_data[1] == username_input and user_data[2] == password_input:
                     logged_in_label = tk.Label(self.root, text=f"Welcome, {user_data[1]}!")
-                    logged_in_label.grid(row=4, column=2, pady=10)
+                    logged_in_label.grid(row=4, column=0, pady=10)
                     self.root.after(1000, lambda: cf.clear_screen(self.root))
                     # Get and return the user_id
                     user_id = user_data[0]
@@ -111,7 +111,7 @@ class LogReg:
                 print("index")
 
         error_label = tk.Label(self.root, text="Password or Username is incorrect!", wraplength=200)
-        error_label.grid(row=4, column=2)
+        error_label.grid(row=4, column=0)
         self.root.after(2000, error_label.destroy)
         return False, None
 
@@ -120,16 +120,16 @@ class LogReg:
         cf.clear_screen(self.root)
         # User can log in or register
         logreg_label = tk.Label(self.root, text="Workout Helper", font=("Arial", 24))
-        logreg_label.grid(row=1, column=2, pady=10)
+        logreg_label.grid(row=1, column=0, pady=10)
         # Login
         login = tk.Button(self.root, text="Login", width=10, command=self.login )
-        login.grid(row=2, column=2, pady=10)
+        login.grid(row=2, column=0, pady=10)
         # Register
         register = tk.Button(self.root, text="Register", width=10, command=self.register )
-        register.grid(row=3, column=2, pady=10)
+        register.grid(row=3, column=0, pady=10)
         # Exit
         leave = tk.Button(self.root, text="Exit", width=10, command=self.root.destroy)
-        leave.grid(row=4, column=2, pady=10)
+        leave.grid(row=4, column=0, pady=10)
 
     def __init__(self, root, on_login=None):
         self.on_login = on_login
