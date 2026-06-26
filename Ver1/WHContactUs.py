@@ -15,7 +15,7 @@ class ContactUs:
         email_lbl.grid(row=1, column=0)
         phone_lbl = tk.Label(self.root, text="Phone: 028 947 2643")
         phone_lbl.grid(row=2, column=0)
-        address_lbl = tk.Label(self.root, text="Address: 575 Chapel Road, East Tamaki, Auckland 1022, New Zealand")
+        address_lbl = tk.Label(self.root, text="Address: 575 Chapel Road, East Tamaki, \nAuckland 1022, New Zealand")
         address_lbl.grid(row=3, column=0)
         back_button = tk.Button(self.root, text="Back", command=self.go_back)
         back_button.grid(row=4, column=0)
